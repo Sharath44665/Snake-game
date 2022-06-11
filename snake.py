@@ -18,14 +18,27 @@ class Snake:
 
     def create_snake(self):
         x_val = 0
+
         for index in range(3):
-            new_turtle = Turtle()
-            new_turtle.penup()
-            new_turtle.shape(name="square")
-            new_turtle.goto(x=x_val, y=0)
-            new_turtle.color("white")
-            self.snake_segment.append(new_turtle)
+            self.add_segment(x_val=x_val)
             x_val -= 20
+
+    def add_segment(self, x_val):
+
+        new_turtle = Turtle()
+        new_turtle.penup()
+        new_turtle.shape(name="square")
+        new_turtle.goto(x=x_val, y=0)
+        new_turtle.color("white")
+        self.snake_segment.append(new_turtle)
+
+    def extend_snake(self):
+        new_turtle = Turtle()
+        new_turtle.penup()
+        new_turtle.shape(name="square")
+        new_turtle.goto(x=new_turtle.xcor(), y=0)
+        new_turtle.color("white")
+        self.snake_segment.append(new_turtle)
 
     def move(self):
         for index_of_snake in range(len(self.snake_segment) - 1, 0, -1):  # 1
